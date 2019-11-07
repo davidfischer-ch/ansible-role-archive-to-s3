@@ -1,6 +1,4 @@
-archive_to_s3_python_packages:
-  - 'pytoolbox[aws]>=13.0.4<14'
-  - 'JSON-log-formatter>=0.2.0<1.0'
+archive_to_s3_python_packages: archive-to-s3
 
 archive_to_s3_config_directory: /etc/archive-to-s3
 archive_to_s3_log_directory: /var/log/archive-to-s3
@@ -25,4 +23,4 @@ archive_to_s3_verbosity: 1
 #       delete: true
 #       directory: /var/log
 #       patterns: ".*\.gz"
-#       prefix: logs/{{ inventory_hostname }}
+#       prefix: logs/{{ inventory_hostname }}/{{ ec2.InstanceId }}
