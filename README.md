@@ -13,7 +13,35 @@ See [meta](meta/main.yml).
 
 ## Variables
 
-TODO VARIABLES
+TODO
+
+### PlayBook
+
+```
+- hosts:
+    - aws
+  pre_tasks:
+    - ec2_metadata_facts:
+      tags: always
+
+    - debug:
+        var: ansible_ec2_instance_id
+  roles:
+    - archive-to-s3
+    # - cloudwatch-mon-scripts
+    # - cloudwatch-logs-agent
+  vars:
+    archive_to_s3_execute_at: 1  # 1 AM
+    archive_to_s3_config:
+      enabled: yes
+      transfers:
+        - name: Logs
+          bucket: my-own-bucket-name
+          delete: yes
+          directory: /var/log
+          patterns: '.*\.gz'
+          prefix: logs/{{ inventory_hostname }}/{{ ansible_ec2_instance_id }}
+```
 
 ## License
 
