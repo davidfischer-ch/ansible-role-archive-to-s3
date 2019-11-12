@@ -37,8 +37,8 @@
           cron:
             name: Execute archive-to-s3 cron task
             job: '/usr/local/bin/archive-to-s3 --config {{ archive_to_s3_config_directory }}/config.yml --verbosity {{ archive_to_s3_verbosity|int }} >> {{ archive_to_s3_log_directory }}/process.log'
-            minute: 0
-            hour: '{{ archive_to_s3_execute_at }}'
+            minute: '0'
+            hour: '{{ archive_to_s3_execute_at|string }}'
             user: root
             state: '{{ item }}'
           loop:
