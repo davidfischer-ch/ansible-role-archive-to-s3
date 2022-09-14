@@ -21,7 +21,7 @@
             name: '{{ item }}'
             owner: root
             group: root
-            mode: 0775
+            mode: '775'
             state: directory
           loop:
             - '{{ archive_to_s3_config_directory }}'
@@ -31,7 +31,7 @@
           copy:
             content: '{{ archive_to_s3_config|to_yaml }}'
             dest: '{{ archive_to_s3_config_directory }}/config.yml'
-            mode: 0644
+            mode: '644'
 
         - name: Toggle Archive to S3 cron task
           cron:
